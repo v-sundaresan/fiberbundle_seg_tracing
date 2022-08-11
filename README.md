@@ -1,6 +1,8 @@
 # Constrained self-supervised method with temporal ensembling for fiber bundle detection on anatomic tracing data
 
-### Accepted to MICCAI 1st International Workshop on Medical Optical Imaging and Virtual Microscopy Image Analysis (MOVI 2022). Preprint DOI and citation details to be updated soon.
+### Accepted to MICCAI 1st International Workshop on Medical Optical Imaging and Virtual Microscopy Image Analysis (MOVI 2022). 
+
+#### Preprint DOI and citation details to be updated soon.
 
 #### Software versions used:
 - Python > 3.6
