@@ -7,7 +7,7 @@ alt="Network architecture used for fiber segmentation."
 />
 
 <img
-src="images/fig4_sup_comp.jpg"
+src="images/fig4_super_comp.jpg"
 alt="Two sample results of the ablation study, with the profile of fibers within detected bundles."
 />
 
