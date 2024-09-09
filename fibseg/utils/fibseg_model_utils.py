@@ -119,3 +119,18 @@ class OutConv(nn.Module):
     def forward(self, x):
         return self.conv(x)
 
+
+class FullConn(nn.Module):
+    """convolution"""
+
+    def __init__(self, in_channels, out_channels, name):
+        super(FullConn, self).__init__()
+        self.fc = nn.Sequential(
+            OrderedDict([
+                (name + "fclayer", nn.Linear(in_channels, out_channels)),
+                (name + "relu", nn.ReLU(inplace=True)), ])
+        )
+
+    def forward(self, x):
+        return self.fc(x)
+

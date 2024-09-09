@@ -59,7 +59,6 @@ def evaluate(args):
 
     # Create the training parameters dictionary
     eval_params = {'Nclass': args.num_classes,
-                   'EveryN': args.cp_everyn_N,
                    'Pretrained': args.pretrained_model,
                    'Modelname': model_name,
                    'Patch_size': args.patch_size,
