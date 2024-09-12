@@ -14,6 +14,8 @@ import glymur
 from slider import chart_reg
 from skimage import draw, color
 from slider import util
+import torch
+from collections import OrderedDict
 
 #=========================================================================================
 # Fiber Bundle segmentation tool - utils function
@@ -133,6 +135,33 @@ def applying_brainmask(prediction, brain_mask):
     final_brainmask = ndimage.binary_erosion(brain_mask > 0, structure=strel).astype(np.float)
     constrained_prediction = prediction * final_brainmask
     return constrained_prediction, (brain_mask - final_brainmask).astype(float)
+
+def loading_model(model_name, model, device, mode='weights'):
+    if mode == 'weights':
+        if str(device) == 'cpu':
+            print('utils:device used:' + str(device))
+            axial_state_dict = torch.load(model_name, map_location='cpu')
+        else:
+            print('utils:device used:' + str(device))
+            axial_state_dict = torch.load(model_name)
+    else:
+        if str(device) == 'cpu':
+            print('utils:device used:' + str(device))
+            ckpt = torch.load(model_name, map_location='cpu')
+        else:
+            print('utils:device used:' + str(device))
+            ckpt = torch.load(model_name)
+        axial_state_dict = ckpt['model_state_dict']
+
+    new_axial_state_dict = OrderedDict()
+    for key, value in axial_state_dict.items():
+        if 'module.' in key[:7]:
+            name = key  # remove `module.`
+        else:
+            name = 'module.' + key
+        new_axial_state_dict[name] = value
+    model.load_state_dict(new_axial_state_dict)
+    return model
 
 
 def dist(cent1, cent2):

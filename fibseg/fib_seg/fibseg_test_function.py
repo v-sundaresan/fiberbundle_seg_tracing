@@ -40,7 +40,7 @@ def main(sect_name_dicts, eval_params, intermediate=False, model_dir=None,
 
     model_name = eval_params['Modelname']
     model_type = eval_params['Model_type']
-    numchannels = eval_params['Num_channels']
+    numchannels = 1  # eval_params['Num_channels']
     psize = eval_params['Patch_size']
 
     try:
@@ -59,7 +59,7 @@ def main(sect_name_dicts, eval_params, intermediate=False, model_dir=None,
             model = fibseg_model.EncDecClass(n_channels=numchannels, n_classes=nclass, init_channels=64,
                                          feat_channels=128, plane='axial')
         model.to(device=device)
-        model = nn.DataParallel(model)
+        # model = nn.DataParallel(model)
         model = fibseg_utils.loading_model(model_path, model)
     except ImportError:
         raise ImportError('In directory ' + model_dir + ', ' + model_name + '.pth' +

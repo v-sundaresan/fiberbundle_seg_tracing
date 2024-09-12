@@ -59,16 +59,16 @@ def evaluate(args):
 
     # Create the training parameters dictionary
     eval_params = {'Nclass': args.num_classes,
-                   'Pretrained': args.pretrained_model,
+                   # 'Pretrained': args.pretrained_model,
                    'Modelname': model_name,
+                   'Use_CPU': args.use_cpu,
                    'Patch_size': args.patch_size,
                    'Model_type': args.model_type
                    }
 
     # Test main function call
     fibseg_test_function.main(sect_name_dicts, eval_params, intermediate=args.intermediate,
-                              model_dir=model_dir, load_case=args.cp_load_type, output_dir=out_dir,
-                              verbose=args.verbose)
+                              model_dir=model_dir, output_dir=out_dir, verbose=args.verbose)
 
     if args.fiber_specs is True:
         fibseg_get_fiber_specs()
