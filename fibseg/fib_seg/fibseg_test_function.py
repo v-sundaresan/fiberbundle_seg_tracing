@@ -54,7 +54,7 @@ def main(sect_name_dicts, eval_params, intermediate=False, model_dir=None,
             if 'outconv' in key and 'weight' in key:
                 nclass = state_dict[key].size()[0]
             if 'inpconv' in key and 'weight' in key:
-                numchannels = value.size()[1]
+                numchannels = value.size()[0]
         if model_type == 'unet':
             model = fibseg_model.EncDecClass(n_channels=numchannels, n_classes=nclass, init_channels=64,
                                          feat_channels=128, plane='axial')
